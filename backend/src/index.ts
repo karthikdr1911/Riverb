@@ -39,7 +39,7 @@ fastify.get('/api/health', async (request, reply) => {
     await pool.query('SELECT 1');
     dbStatus = 'connected';
   } catch (error) {
-    fastify.log.error('Database health check failed:', error);
+    fastify.log.error(`Database health check failed: ${(error as Error).message}`);
   }
 
   const response: HealthResponse = {
